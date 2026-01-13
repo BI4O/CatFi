@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatFi - 养猫学投资</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="iphone-frame">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="clock-display">09:41</span>
+            <div class="icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- Global Header -->
+        <div class="app-header">
+            <i class="fas fa-bars"></i>
+            <h2 id="header-title">猫窝</h2>
+            <i class="fas fa-cog"></i>
+        </div>
+
+        <div id="app-content">
+            <!-- News Screen -->
+            <div id="screen-news" class="screen">
+                <div class="progress-section" style="margin-bottom: 24px;">
+                    <div
+                        style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 8px;">
+                        <span>今日新闻训练</span>
+                        <span id="news-progress-text">12/20</span>
+                    </div>
+                    <div class="exp-track">
+                        <div class="exp-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="news-deck" id="news-deck">
+                    <!-- Cards will be dynamically added -->
+                    <div class="swipe-label like">关注</div>
+                    <div class="swipe-label dislike">存疑</div>
+                </div>
+                <div style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 30px;">
+                    ← 左滑存疑 &nbsp;&nbsp;&nbsp; 右滑关注 →
+                </div>
+            </div>
+
+            <!-- Home Screen (Default) -->
+            <div id="screen-home" class="screen active">
+                <div class="greeting-section">
+                    <h1>☀️ 早上好</h1>
+                </div>
+                <div class="hero-cat-card">
+                    <div class="cat-avatar-main" id="cat-avatar-main">
+                        <!-- High Quality Cat SVG -->
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="80" fill="#FFEDE0" />
+                            <path d="M60 70 L40 40 L80 60 Z" fill="#FF8C42" />
+                            <path d="M140 70 L160 40 L120 60 Z" fill="#FF8C42" />
+                            <ellipse cx="100" cy="110" rx="70" ry="65" fill="#FF8C42" />
+                            <circle cx="70" cy="95" r="8" fill="#2D3436" />
+                            <circle cx="130" cy="95" r="8" fill="#2D3436" />
+                            <path d="M90 120 Q100 130 110 120" stroke="#2D3436" stroke-width="4" fill="none"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <div class="level-badge">小橘 Lv.7</div>
+                    <div class="exp-container">
+                        <div class="exp-track">
+                            <div class="exp-fill" style="width: 65%;"></div>
+                        </div>
+                        <span class="exp-text">经验值 320 / 500</span>
+                    </div>
+                    <p style="margin-top: 20px; font-style: italic; color: var(--text-sec); font-size: 14px;">"最近手感不错喵~"
+                    </p>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-pill">
+                        <span class="label">💰 零花钱</span>
+                        <span class="val">45 CAT</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label">😊 心情</span>
+                        <span class="val">心情大好</span>
+                    </div>
+                    <div class="stat-pill" onclick="navTo('personality')"
+                        style="cursor: pointer; border: 1px solid var(--primary-light);">
+                        <span class="label">📊 风格</span>
+                        <span class="val" style="color: var(--primary);">有点激进 <i class="fas fa-chevron-right"
+                                style="font-size: 10px;"></i></span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="label">📈 近7日</span>
+                        <span class="val up">+12.5%</span>
+                    </div>
+                </div>
+                <button class="btn-pill" id="btn-checkin-main">🎁 签到领 100 CAT</button>
+            </div>
+
+            <!-- Personality Detail Screen -->
+            <div id="screen-personality" class="screen">
+                <div class="hero-cat-card" style="margin-top: 10px;">
+                    <h3 style="font-weight: 800; margin-bottom: 20px;">性格画像</h3>
+                    <div class="trait-row">
+                        <span>风险偏好</span>
+                        <div class="trait-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="level">8/10</span>
+                    </div>
+                    <div class="trait-row">
+                        <span>决策速度</span>
+                        <div class="trait-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="level">5/10</span>
+                    </div>
+                    <div class="trait-row">
+                        <span>信息辨别</span>
+                        <div class="trait-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="level">3/10</span>
+                    </div>
+                    <div class="trait-row">
+                        <span>持仓耐心</span>
+                        <div class="trait-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span class="level">4/10</span>
+                    </div>
+                </div>
+                <div class="card"
+                    style="padding: 20px; background: white; border-radius: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+                    <h4 style="font-size: 14px; font-weight: 800; margin-bottom: 12px;">❤️ 偏好币种</h4>
+                    <div class="tags-cloud">
+                        <span class="coin-tag">BTC</span> <span class="coin-tag">SOL</span> <span
+                            class="coin-tag">PEPE</span>
+                    </div>
+                    <h4 style="font-size: 14px; font-weight: 800; margin-top: 20px; margin-bottom: 12px;">🚫 不感兴趣</h4>
+                    <div class="tags-cloud">
+                        <span class="coin-tag muted">XRP</span> <span class="coin-tag muted">ADA</span>
+                    </div>
+                </div>
+                <button class="btn-pill secondary" onclick="navTo('home')">返回猫窝</button>
+            </div>
+
+            <!-- Vault Screen -->
+            <div id="screen-vault" class="screen">
+                <div
+                    style="background: #EFEFEF; padding: 4px; border-radius: 99px; display: flex; margin-bottom: 24px;">
+                    <button class="toggle-btn active"
+                        style="flex:1; border:none; padding:10px; border-radius:99px; font-weight:700; cursor:pointer; background:white; box-shadow:var(--shadow-sm);">模拟盘</button>
+                    <button class="toggle-btn"
+                        style="flex:1; border:none; padding:10px; border-radius:99px; font-weight:700; cursor:pointer; background:transparent; color:var(--text-muted);">真实盘</button>
+                </div>
+                <div class="asset-total">
+                    <h3>总资产（模拟）</h3>
+                    <div class="val">$ 2,847.32</div>
+                    <div class="daily success">昨日 +$23.50 (+0.83%)</div>
+                </div>
+
+                <!-- Farming Section -->
+                <div class="farm-section" style="margin-bottom: 30px;">
+                    <div class="holdings-header"
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 style="font-size: 14px; font-weight: 700;">🌾 我的农田 (V1.2)</h3>
+                        <span style="font-size: 12px; color: var(--success); font-weight: 700;">+12% APR</span>
+                    </div>
+                    <div class="farm-card">
+                        <div class="farm-info">
+                            <div class="farm-title">
+                                <span class="farm-icon">🥞</span>
+                                <div>
+                                    <span class="name">PancakeSwap LP</span>
+                                    <span class="status">工作中...</span>
+                                </div>
+                            </div>
+                            <div class="farm-yield">
+                                <span class="amount" id="farm-yield-val">0.4200 CAT</span>
+                                <span class="label">已产生收益</span>
+                            </div>
+                        </div>
+                        <div class="farm-actions">
+                            <button class="farm-btn harvest" onclick="harvestFarm()">收割</button>
+                            <button class="farm-btn add" onclick="navTo('chat')">追加</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cat-distribution card"
+                    style="padding: 20px; background: white; border-radius: 20px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.02);">
+                    <div class="dist-title">🪙 CAT 分布</div>
+                    <div class="dist-track">
+                        <div class="dist-part p-pocket" style="width: 10%;"></div>
+                        <div class="dist-part p-vault" style="width: 50%;"></div>
+                        <div class="dist-part p-bank" style="width: 40%;"></div>
+                    </div>
+                    <div class="dist-legend">
+                        <span>零花钱 45</span>
+                        <span>金库 800</span>
+                        <span>银行 500</span>
+                    </div>
+                    <button class="btn-pill secondary"
+                        style="margin-top: 20px; padding: 12px; font-size: 13px;">重新分配</button>
+                </div>
+                <div class="holdings-header"
+                    style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0 12px;">
+                    <h3 style="font-size: 14px; font-weight: 700;">🐱 小橘持仓</h3>
+                    <span style="font-size: 12px; color: var(--primary); font-weight: 700;">查看详情</span>
+                </div>
+                <div class="holding-item">
+                    <div class="icon">₿</div>
+                    <div class="info">
+                        <span class="sym">BTC</span>
+                        <span class="note">📰 「BTC突破历史新高」</span>
+                    </div>
+                    <div class="trends">
+                        <span class="price">$82,40</span>
+                        <span class="perc success">+12.3%</span>
+                    </div>
+                </div>
+                <div class="holding-item">
+                    <div class="icon">◇</div>
+                    <div class="info">
+                        <span class="sym">ETH</span>
+                        <span class="note">📰 「以太坊升级成功」</span>
+                    </div>
+                    <div class="trends">
+                        <span class="price">$280.00</span>
+                        <span class="perc success">+8.7%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Screen -->
+            <div id="screen-chat" class="screen">
+                <div class="messages-list" id="chat-stream">
+                    <!-- Messages flow here -->
+                </div>
+                <div class="chat-controls">
+                    <input type="text" id="chat-input" placeholder="输入消息...">
+                    <button class="send-icon" id="send-trigger"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Onboarding Overlays -->
+        <div id="onboarding-step1" class="overlay-screen" style="display: flex;">
+            <div class="onboarding-bg"
+                style="position: absolute; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at top, #FFF9F5 0%, #FAFAFA 100%); z-index:-1;">
+            </div>
+            <h1 style="font-size: 32px; font-weight: 900; margin-top: 60px;">CatFi</h1>
+            <div class="onboarding-cat">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="80" fill="#FFEDE0" />
+                    <path d="M60 70 L40 40 L80 60 Z" fill="#FF8C42" />
+                    <path d="M140 70 L160 40 L120 60 Z" fill="#FF8C42" />
+                    <ellipse cx="100" cy="110" rx="70" ry="65" fill="#FF8C42" />
+                    <circle cx="70" cy="95" r="10" fill="#2D3436" />
+                    <circle cx="130" cy="95" r="10" fill="#2D3436" />
+                    <path d="M90 125 Q100 140 110 125" stroke="#2D3436" stroke-width="5" fill="none"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
+            <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 12px;">养猫学投资</h2>
+            <p style="color: var(--text-sec); line-height: 1.6; margin-bottom: 40px;">用有趣的方式探索 DeFi 世界<br>培养你的专属 AI
+                交易员猫咪</p>
+            <div class="onboarding-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="btn-pill" onclick="nextOnboarding(2)">开始养猫</button>
+        </div>
+
+        <div id="onboarding-step2" class="overlay-screen">
+            <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 30px;">选一只小猫吧</h2>
+            <div style="display: flex; justify-content: space-around; margin-bottom: 40px;">
+                <div class="cat-option active"
+                    style="padding:16px; border-radius:24px; border:3px solid var(--primary); background: #FFF9F5;">
+                    <div style="width:60px; height:60px; background:#FF8C42; border-radius:50%; margin:0 auto 10px;">
+                    </div>
+                    <span style="font-weight:700; font-size:13px;">橘猫</span>
+                </div>
+                <div class="cat-option" style="padding:16px; border-radius:24px; border:3px solid #EEE;">
+                    <div style="width:60px; height:60px; background:#4ECDC4; border-radius:50%; margin:0 auto 10px;">
+                    </div>
+                    <span style="font-weight:700; font-size:13px;">蓝猫</span>
+                </div>
+                <div class="cat-option" style="padding:16px; border-radius:24px; border:3px solid #EEE;">
+                    <div style="width:60px; height:60px; background:#2D3436; border-radius:50%; margin:0 auto 10px;">
+                    </div>
+                    <span style="font-weight:700; font-size:13px;">玄猫</span>
+                </div>
+            </div>
+            <div style="background:#F5F5F5; padding:20px; border-radius:20px; text-align:left; margin-bottom:40px;">
+                <label
+                    style="font-size:12px; font-weight:700; color:var(--text-muted); display:block; margin-bottom:10px;">给它起个名字吧</label>
+                <input type="text" value="小橘"
+                    style="width:100%; background:transparent; border:none; font-size:20px; font-weight:700; outline:none; color:var(--text-main);">
+            </div>
+            <div class="onboarding-dots">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+            <button class="btn-pill" onclick="nextOnboarding(3)">确认领养</button>
+        </div>
+
+        <div id="onboarding-step3" class="overlay-screen">
+            <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 30px;">准备好了吗？</h2>
+            <div
+                style="background: white; border-radius: 24px; padding: 24px; box-shadow: var(--shadow-sm); text-align: left; margin-bottom: 40px;">
+                <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                    <div style="font-size: 24px;">📰</div>
+                    <div>
+                        <h4 style="font-weight: 800;">刷新闻训练</h4>
+                        <p style="font-size: 13px; color: var(--text-sec);">你的标记会影响猫的判断</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                    <div style="font-size: 24px;">💰</div>
+                    <div>
+                        <h4 style="font-weight: 800;">分配零花钱</h4>
+                        <p style="font-size: 13px; color: var(--text-sec);">猫会自主决定买入何种资产</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 16px;">
+                    <div style="font-size: 24px;">💬</div>
+                    <div>
+                        <h4 style="font-weight: 800;">深度互动</h4>
+                        <p style="font-size: 13px; color: var(--text-sec);">教它知识，看它成长</p>
+                    </div>
+                </div>
+            </div>
+            <div class="onboarding-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+            </div>
+            <button class="btn-pill" onclick="finishOnboarding()">开启 CatFi 旅程</button>
+        </div>
+
+        <!-- Global Navigation -->
+        <nav class="nav-bar">
+            <div class="nav-item" onclick="navTo('news')"><i class="fas fa-newspaper"></i><span>新闻</span></div>
+            <div class="nav-item active" onclick="navTo('home')"><i class="fas fa-cat"></i><span>猫窝</span></div>
+            <div class="nav-item" onclick="navTo('vault')"><i class="fas fa-wallet"></i><span>金库</span></div>
+            <div class="nav-item" onclick="navTo('chat')"><i class="fas fa-comment"></i><span>聊天</span></div>
+        </nav>
+
+        <!-- Final Report Modal -->
+        <div class="modal-overlay" id="modal-global">
+            <div class="modal-card" id="modal-container">
+                <!-- Modal content injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
